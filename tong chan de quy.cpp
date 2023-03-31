@@ -5,6 +5,7 @@ long Tong(int n){
 	return 0;
 	if(n%2==0)
 	return Tong(n-2)+n;
+	return Tong(n-2)+(n-1);
 }
 int main (){
 	int n, S;
