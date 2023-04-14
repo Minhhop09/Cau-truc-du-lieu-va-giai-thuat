@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+#define MAXSIZE 100
+
+class Stack {
+    int top; // bi?n v? trí c?a ph?n t? ??u tiên trong stack
+    int arr[MAXSIZE]; // m?ng ?? l?u các ph?n t? trong stack
+
+public:
+    Stack() { top = -1; } // kh?i t?o giá tr? ban ??u c?a bi?n v? trí
+
+    bool push(int x); // hàm thêm m?t ph?n t? vào stack
+    int pop(); // hàm lo?i b? ph?n t? trên ??nh stack và tr? v? giá tr? c?a ph?n t? ?ó
+    int peek(); // hàm tr? v? giá tr? c?a ph?n t? ?ang n?m trên ??nh stack
+    bool isEmpty(); // hàm ki?m tra xem stack có r?ng hay không
+};
+
+bool Stack::push(int x) {
+    if (top >= (MAXSIZE - 1)) { // ki?m tra xem stack ?ã ??y hay ch?a
+        cout << "Stack overflow" << endl;
+        return false;
+    }
+    else {
+        arr[++top] = x; // t?ng bi?n v? trí lên 1 và thêm ph?n t? vào v? trí m?i
+        return true;
+    }
+}
+
+int Stack::pop() {
+    if (top < 0) { // ki?m tra xem stack ?ã r?ng hay ch?a
+        cout << "Stack underflow" << endl;
+        return 0;
+    }
+    else {
+        int x = arr[top--]; // gi?m bi?n v? trí ?i 1 và tr? v? giá tr? c?a ph?n t? ??nh
+        return x;
+    }
+}
+
+int Stack::peek() {
+    if (top < 0) { // ki?m tra xem stack ?ã r?ng hay ch?a
+        cout << "Stack is empty" << endl;
+        return 0;
+    }
+    else {
+        int x = arr[top]; // tr? v? giá tr? c?a ph?n t? ??nh
+        return x;
+    }
+}
+
+bool Stack::isEmpty() {
+    return (top < 0); // ki?m tra xem stack có r?ng hay không
+}
+
+int main() {
+    Stack s;
+    int arr[] = { 41, 23, 4, 14, 56, 1 };
+
+    for (int i = 0; i < 6; i++) {
+        s.push(arr[i]); // thêm các ph?n t? c?a m?ng vào stack
+    }
+
+    int top = s.pop(); // l?y giá tr? trên ??nh stack và gán vào bi?n top
+    cout << "Top of stack: " << top << endl;
+
+    cout << "Stack content: ";
+    while (!s.isEmpty()) { // in các ph?n t? trong stack
+        cout << s.pop() << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+ 
