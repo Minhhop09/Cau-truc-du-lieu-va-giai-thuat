@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+  int data;
+  Node* prev;
+  Node* next;
+};
+
+int main() {
+  // Khoi tao ds rong
+  Node* head = NULL;
+  Node* tail = NULL;
+
+  // Thêm nút đầu tiên có giá trị là 1
+  Node* newNode = new Node;
+  newNode->data = 1;
+  newNode->prev = NULL;
+  newNode->next = NULL;
+  head = newNode;
+  tail = newNode;
+
+  // Thêm nút mới có giá trị là 2 vào cuối danh sách
+  newNode = new Node;
+  newNode->data = 2;
+  newNode->prev = tail;
+  newNode->next = NULL;
+  tail->next = newNode;
+  tail = newNode;
+
+  // In ra các giá trị trong danh sách 
+  Node* current = head;
+  while (current != NULL) {
+    cout << current->data << " ";
+    current = current->next;
+  }
+  return 0;
+}
